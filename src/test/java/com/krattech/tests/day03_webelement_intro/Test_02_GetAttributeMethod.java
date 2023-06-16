@@ -40,8 +40,6 @@ public class Test_02_GetAttributeMethod {
         }else{
             System.out.println("Failed");
         }
-
         driver.quit();
-
     }
 }

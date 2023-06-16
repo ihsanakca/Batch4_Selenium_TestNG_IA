@@ -24,11 +24,10 @@ public class Test_01_OpenBrowser {
        }else{
            System.out.println("Failed");
        }
+
         WebDriver driver1=new ChromeDriver();
         driver1.get("https://www.google.com");  ///driver quit() aynı driver üzerinde açılan tabları kapatır. driver1 bu örnekte kapanmaz
-
-       driver.quit();
-
+        driver.quit();
 
     }
 }

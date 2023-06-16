@@ -4,38 +4,36 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        String str = "128 2 3693 65 89 25 10";
-        System.out.println(sumOfString(str));
-
+        String str = "red2 blue5 black1 green3 gold4";
+        System.out.println("orderColors(str) = " + orderColors(str));
     }
 
-    /**
-     * 11  2 21  11 17 7  1
-     * String str="128 2 3693 65 89 25 10"; str içerisindeki boşlukla ayrılmış sayıların sayı değerleri
-     * toplanarak küçükten büyüğe dizili olarak yeniden bir stringe tanımlayan metod nedir? Bu soru
-     * için cevap String result="1 2 7 11 11 17 21"; şeklinde olmalıdır.
-     */
-    public static String sumOfString(String str) {
-        String[] strArr = str.split(" ");
-        int sum = 0;
-        String result = "";
+//result-->black red green gold blue
 
-        int[] intArr = new int[strArr.length];
+    public static String orderColors(String str) {
+        String[] words = str.split(" ");
 
-        for (int i = 0; i < strArr.length; i++) {
-            for (int j = 0; j < strArr[i].length(); j++) {
-                sum += Integer.parseInt(strArr[i].substring(j, j + 1));
-//                sum += Integer.parseInt(strArr[i].charAt(j)+"");
-//                sum += Character.getNumericValue(strArr[i].charAt(j));
-            }
-            intArr[i] = sum;
-            sum = 0;
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(words[i].length() - 1) + words[i];
         }
-        Arrays.sort(intArr);
+        Arrays.sort(words);
+      //  System.out.println("Arrays.toString(words) = " + Arrays.toString(words));
 
-        for (int i : intArr) {
-            result += i + " ";
+        for (int i = 0; i < words.length ; i++) {
+            words[i] =words[i].replace(words[i].substring(0,1), "");
         }
-        return result.trim();
+
+       // System.out.println("Arrays.toString(words) = " + Arrays.toString(words));
+
+    /*    String result="";
+        for (String word : words) {
+            result+=word+" ";
+        }
+        return result.trim();*/
+
+        String joined = String.join(" ", words);
+
+        return joined;
+
     }
 }
