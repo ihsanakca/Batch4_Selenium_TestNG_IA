@@ -26,11 +26,11 @@ public class Main {
     }
 
     public static String longestPalindromic(String str) {
-        Set<String> allSubs = new HashSet<>();
+        List<String> allSubs = new ArrayList<>();
         for (int i = 0; i < str.length(); i++) {
             for (int j = i + 1; j <= str.length(); j++) {
                 String newStr = str.substring(i, j);
-                System.out.println("allSubs.add(newStr) = " + allSubs.add(newStr));
+               allSubs.add(newStr);
             }
         }
         System.out.println("allSubs = " + allSubs);
