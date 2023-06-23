@@ -1,4 +1,4 @@
-package com.krattech.tests.day05_XPath;
+package com.krattech.tests.day05_XPathAndCSS;
 
 import com.krattech.utilities.WebDriverFactory;
 import org.openqa.selenium.*;

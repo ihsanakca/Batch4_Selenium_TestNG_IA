@@ -1,72 +1,69 @@
 package com.krafttech;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String str = "red24 blue54 black188 green33 gold33";
-       // System.out.println(orderColors_1(str));
+        /**
+         * Given a string s, return the longest palindromic substring in s.
+         * Example 1:
+         * <p>
+         * Input: s = "babad"
+         * Output: "bab"
+         * Explanation: "aba" is also a valid answer.
+         * Example 2:
+         * <p>
+         * Input: s = "cbbd"
+         * Output: "bb"
+         */
+        String s = "babad";
+        System.out.println("longestPalindromic(s) = " + longestPalindromic(s));
 
-        List<Integer> list=new ArrayList<>();
-        list.add(3);
-        list.add(3);
-        list.add(3);
-        list.add(11);
-        System.out.println(list);
-
-        System.out.println("list.stream().distinct().count() = " + list.stream().distinct().toList());
-
-        list.removeIf(e->e<6);
-
-        System.out.println(list);    }
-
-//result-->black red green gold blue
-
-    public static String orderColors(String str) {
-        String[] words = str.split(" ");
-
-        for (int i = 0; i < words.length; i++) {
-            words[i] = words[i].substring(words[i].length() - 1) + words[i];
-        }
-        Arrays.sort(words);
-        //  System.out.println("Arrays.toString(words) = " + Arrays.toString(words));
-
-        for (int i = 0; i < words.length; i++) {
-            words[i] = words[i].replace(words[i].substring(0, 1), "");
-        }
-
-        // System.out.println("Arrays.toString(words) = " + Arrays.toString(words));
-
-    /*    String result="";
-        for (String word : words) {
-            result+=word+" ";
-        }
-        return result.trim();*/
-
-        String joined = String.join(" ", words);
-
-        return joined;
+        //mesela   asdddsc kelimesinde cevap : sddds olmalı çünkü düzü ve tersi aynı ve bu kelimede bu şartı sağlayan
+        // en uzun kısım
+        // kayakçılar kelimesinde kayak cevap olmalı...
 
     }
 
-    // String str = "red24 blue54 black188 green33 gold33";  [32,25,369,35]
-    public static String orderColors_1(String str) {
-        String[] words = str.split(" ");
-        for (int i = 0; i < words.length; i++) {
-            for (int j = i + 1; j < words.length; j++) {
-                if (Integer.parseInt(words[i].replaceAll("[^0-9]", "")) >
-                        Integer.parseInt(words[j].replaceAll("[^0-9]", ""))) {
-                    String temp = words[i];
-                    words[i] = words[j];
-                    words[j] = temp;
-                }
+    public static String longestPalindromic(String str) {
+        Set<String> allSubs = new HashSet<>();
+        for (int i = 0; i < str.length(); i++) {
+            for (int j = i + 1; j <= str.length(); j++) {
+                String newStr = str.substring(i, j);
+                System.out.println("allSubs.add(newStr) = " + allSubs.add(newStr));
             }
-
         }
-        System.out.println(Arrays.toString(words));
-        String joined = String.join(" ", words).replaceAll("[0-9]", "");
-        return joined;
+        System.out.println("allSubs = " + allSubs);
+        List<String> allPalindromicSubs = new ArrayList<>();
+        for (String allSub : allSubs) {
+            if (isPalindrome2(allSub)){
+                allPalindromicSubs.add(allSub);
+            }
+        }
+       // System.out.println("allPalindromicSubs = " + allPalindromicSubs);
+
+        List<Integer> lengthOfPal=new ArrayList<>();
+
+        for (String allPalindromicSub : allPalindromicSubs) {
+            lengthOfPal.add(allPalindromicSub.length());
+        }
+
+        int max = Collections.max(lengthOfPal);
+
+        String result = allPalindromicSubs.get(lengthOfPal.indexOf(max));
+
+
+        return result;
+    }
+    public static boolean isPalindrome1(String str){
+        String reverse="";
+        for (int i = str.length()-1; i >=0 ; i--) {
+            reverse+=str.charAt(i);
+        }
+        return str.equals(reverse);
+    }
+
+    public static boolean isPalindrome2(String str){
+       return str.equals(new StringBuffer(str).reverse().toString());
     }
 }

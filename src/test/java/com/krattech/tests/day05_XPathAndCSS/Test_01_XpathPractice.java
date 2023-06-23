@@ -1,12 +1,10 @@
-package com.krattech.tests.day05_XPath;
+package com.krattech.tests.day05_XPathAndCSS;
 
 import com.krattech.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class Test_01_XpathPractice {
     static WebDriver driver = WebDriverFactory.getDriver("chrome");
