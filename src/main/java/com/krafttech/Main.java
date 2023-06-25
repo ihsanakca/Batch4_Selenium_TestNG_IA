@@ -16,7 +16,7 @@ public class Main {
          * Input: s = "cbbd"
          * Output: "bb"
          */
-        String s = "babad";
+        String s = "asaattaak";   //b ba bab baba babad a ab aba ....
         System.out.println("longestPalindromic(s) = " + longestPalindromic(s));
 
         //mesela   asdddsc kelimesinde cevap : sddds olmalı çünkü düzü ve tersi aynı ve bu kelimede bu şartı sağlayan
@@ -27,43 +27,29 @@ public class Main {
 
     public static String longestPalindromic(String str) {
         List<String> allSubs = new ArrayList<>();
+        int max = 0;
         for (int i = 0; i < str.length(); i++) {
             for (int j = i + 1; j <= str.length(); j++) {
                 String newStr = str.substring(i, j);
-               allSubs.add(newStr);
+                if (isPalindrome1(newStr) && newStr.length() > max) {
+                    allSubs.add(0,newStr);
+                    max=newStr.length();
+                }
             }
         }
         System.out.println("allSubs = " + allSubs);
-        List<String> allPalindromicSubs = new ArrayList<>();
-        for (String allSub : allSubs) {
-            if (isPalindrome2(allSub)){
-                allPalindromicSubs.add(allSub);
-            }
-        }
-       // System.out.println("allPalindromicSubs = " + allPalindromicSubs);
-
-        List<Integer> lengthOfPal=new ArrayList<>();
-
-        for (String allPalindromicSub : allPalindromicSubs) {
-            lengthOfPal.add(allPalindromicSub.length());
-        }
-
-        int max = Collections.max(lengthOfPal);
-
-        String result = allPalindromicSubs.get(lengthOfPal.indexOf(max));
-
-
-        return result;
+        return allSubs.get(0);
     }
-    public static boolean isPalindrome1(String str){
-        String reverse="";
-        for (int i = str.length()-1; i >=0 ; i--) {
-            reverse+=str.charAt(i);
+
+    public static boolean isPalindrome1(String str) {
+        String reverse = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reverse += str.charAt(i);
         }
         return str.equals(reverse);
     }
 
-    public static boolean isPalindrome2(String str){
-       return str.equals(new StringBuffer(str).reverse().toString());
+    public static boolean isPalindrome2(String str) {
+        return str.equals(new StringBuffer(str).reverse().toString());
     }
 }
