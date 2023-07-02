@@ -4,52 +4,45 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
         /**
-         * Given a string s, return the longest palindromic substring in s.
-         * Example 1:
-         * <p>
-         * Input: s = "babad"
-         * Output: "bab"
-         * Explanation: "aba" is also a valid answer.
-         * Example 2:
-         * <p>
-         * Input: s = "cbbd"
-         * Output: "bb"
+         * örnek: String s="((()))" valid
+         * String s="((()))("  invalid
+         * String s="()(()(()))" valid
+         * String s="((())())" valid
+         * String s="((())()()" invalid
+         * String s="(()))()()(()" invalid
          */
-        String s = "asaattaak";   //b ba bab baba babad a ab aba ....
-        System.out.println("longestPalindromic(s) = " + longestPalindromic(s));
+        String s="(()))()()(()";
 
-        //mesela   asdddsc kelimesinde cevap : sddds olmalı çünkü düzü ve tersi aynı ve bu kelimede bu şartı sağlayan
-        // en uzun kısım
-        // kayakçılar kelimesinde kayak cevap olmalı...
+        System.out.println("isValidParentheses_1(s) = " + isValidParentheses_1(s));
 
     }
 
-    public static String longestPalindromic(String str) {
-        List<String> allSubs = new ArrayList<>();
-        int max = 0;
-        for (int i = 0; i < str.length(); i++) {
-            for (int j = i + 1; j <= str.length(); j++) {
-                String newStr = str.substring(i, j);
-                if (isPalindrome1(newStr) && newStr.length() > max) {
-                    allSubs.add(0,newStr);
-                    max=newStr.length();
-                }
+    public static boolean isValidParentheses(String str) {
+        while (str.contains("()")) {
+            str = str.replace("()", "");
+        }
+        return str.isEmpty();
+    }
+    public static boolean isValidParentheses_1(String str){
+        char[] chars = str.toCharArray();
+        int count=0;
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i]=='('){
+                count++;
             }
+            if (chars[i]==')'){
+                count--;
+            }
+            if (count<0){
+               return false;
+            }
+
         }
-        System.out.println("allSubs = " + allSubs);
-        return allSubs.get(0);
+        return count==0;
     }
 
-    public static boolean isPalindrome1(String str) {
-        String reverse = "";
-        for (int i = str.length() - 1; i >= 0; i--) {
-            reverse += str.charAt(i);
-        }
-        return str.equals(reverse);
-    }
 
-    public static boolean isPalindrome2(String str) {
-        return str.equals(new StringBuffer(str).reverse().toString());
-    }
 }
