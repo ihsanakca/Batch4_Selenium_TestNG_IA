@@ -4,45 +4,44 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+/**
+ *  //Which method would you use to learn if a string is a rotation of another string?
+ *     //rotation of car->car, arc, rca
+ *     //sarı->sarı,arıs,rısa,ısar  -->en baştaki harfin en sona geçmesiyle oluşan yeni kelime..sıra bozulmuyor
+ *     //ve en fazla harf sayısı kadar oluyor
+ */
 
-        /**
-         * örnek: String s="((()))" valid
-         * String s="((()))("  invalid
-         * String s="()(()(()))" valid
-         * String s="((())())" valid
-         * String s="((())()()" invalid
-         * String s="(()))()()(()" invalid
-         */
-        String s="(()))()()(()";
+        String str="yaman";
+        String str1="manya";
 
-        System.out.println("isValidParentheses_1(s) = " + isValidParentheses_1(s));
+        System.out.println("isRotation(str,str1) = " + isRotation(str, str1));
+        System.out.println("isRotation1(str,str1) = " + isRotation1(str, str1));
+
 
     }
 
-    public static boolean isValidParentheses(String str) {
-        while (str.contains("()")) {
-            str = str.replace("()", "");
+    public static boolean isRotation(String str1, String str2){
+        if (str1.length()!=str2.length()) {
+            return false;
         }
-        return str.isEmpty();
-    }
-    public static boolean isValidParentheses_1(String str){
-        char[] chars = str.toCharArray();
-        int count=0;
 
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i]=='('){
-                count++;
+        for (int i = 0; i < str1.length(); i++) {
+            str1=str1.substring(1)+str1.substring(0,1);
+            if (str1.equals(str2)){
+                return true;
             }
-            if (chars[i]==')'){
-                count--;
-            }
-            if (count<0){
-               return false;
-            }
-
         }
-        return count==0;
+        return false;
     }
+
+    public static boolean isRotation1(String str1,String str2){
+        if (str1.length()!=str2.length()) {
+            return false;
+        }
+        return (str1+str1).contains(str2);
+    }
+
+
 
 
 }

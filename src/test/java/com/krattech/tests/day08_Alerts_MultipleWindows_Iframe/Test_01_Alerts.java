@@ -57,7 +57,7 @@ public class Test_01_Alerts {
          * accept alert
          *
          * click show confirm box
-         * hen take message on the js popup and print it
+         * then take message on the js popup and print it
          * dismiss alert
          *
          * click show prompt box
