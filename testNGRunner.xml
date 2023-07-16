@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Automation Tests">
+    <test name="Kraft Tests">
+        <packages>
+            <package name="com.krafttech.tests.*"></package>
+            <package name="com.krafttech.tests.day11_webTables"></package>
+        </packages>
+        <classes>
+            <class name="com.krafttech.tests.day10_actions_fileUpload_jsExecutor.Test_02_FileUpload">
+                <methods>
+                    <exclude name="fileUpload2"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
