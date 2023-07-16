@@ -33,4 +33,10 @@ public class LoginPage extends BasePage{
         inputs.get(1).sendKeys(ConfigurationReader.get("password"));
         inputs.get(2).click();
     }
+
+    public void login(String userEmail,String password){
+        inputs.get(0).sendKeys(userEmail);
+        inputs.get(1).sendKeys(password);
+        inputs.get(2).click();
+    }
 }

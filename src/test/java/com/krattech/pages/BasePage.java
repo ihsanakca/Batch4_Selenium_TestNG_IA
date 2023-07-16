@@ -23,4 +23,12 @@ public abstract class BasePage {
         }
 
     }
+
+    public String getElementText(WebElement element){
+        return element.getText();
+    }
+
+    public void clickElement(WebElement element){
+        element.click();
+    }
 }
