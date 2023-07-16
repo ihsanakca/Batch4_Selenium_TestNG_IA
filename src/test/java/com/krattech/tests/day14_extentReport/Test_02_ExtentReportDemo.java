@@ -62,6 +62,7 @@ public class Test_02_ExtentReportDemo {
 
         //eğer test buraya kadar gelmişse o testi "GEÇTİ" olarak belirleyelim.
         extentLogger.pass("Passed..!");
+
     }
 
     @AfterMethod
