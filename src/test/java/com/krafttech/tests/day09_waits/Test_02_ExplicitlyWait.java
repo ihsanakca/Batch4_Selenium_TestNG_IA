@@ -11,7 +11,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 import java.time.Duration;
 import java.util.List;
 
@@ -73,6 +72,20 @@ public class Test_02_ExplicitlyWait {
 
     @Test
     public void explicitlyWait_2() {
+        /**
+         * Wait Task
+         * navigate to https://testpages.herokuapp.com/styled/dynamic-buttons-disabled.html
+         * locate all buttons to a web element list (start, one, two, three) (findElements)
+         * Let's click the buttons respectively
+         * after the click to  the last button : "All Buttons Clicked" message should be seen at the page.
+         * Note: Do not use Thread.sleep(), just use dynamic waits
+         *
+         *  https://testpages.herokuapp.com/styled/dynamic-buttons-disabled.html sayfasına gidelim
+         *  bütün butonları bir list'e alalım (start, one, two, three) (findElements)
+         *  butonlara sırasıyla tıklayalım
+         *  son butona tıklandıktan sonra "All Buttons Clicked" mesajının ekrana geldiğini text ile doğrulayalım.
+         *  Not: Thread.sleep() metodunu kullanmayalım sadece dinamik yani akıllı wait kullanalım...
+         */
         driver.get("https://testpages.herokuapp.com/styled/dynamic-buttons-disabled.html");
 
         WebDriverWait wait=new WebDriverWait(driver,10);
